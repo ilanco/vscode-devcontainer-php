@@ -12,7 +12,7 @@
         "terminal.integrated.shell.linux": "/bin/bash"
     },
 
-    "forwardPorts": [8080, 3306],
+    "forwardPorts": [80, 443, 3306],
 
     "extensions": [
         "felixfbecker.php-debug",
