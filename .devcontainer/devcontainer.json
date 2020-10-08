@@ -1,0 +1,26 @@
+{
+    "name": "PHP",
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
+    "service": "workspace",
+    "workspaceFolder": "/var/www",
+
+    "remoteUser": "vscode",
+
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+
+    "forwardPorts": [8080, 3306],
+
+    "extensions": [
+        "felixfbecker.php-debug",
+        "felixfbecker.php-intellisense",
+        "mrmlnc.vscode-apache",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-mysql"
+    ],
+
+    "postCreateCommand": "echo \"postCreateCommand\""
+}
