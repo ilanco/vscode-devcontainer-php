@@ -26,7 +26,6 @@ services:
       - ../:/var/www
     depends_on:
       - php
-      - node
 
   php:
     build: ./docker/php
