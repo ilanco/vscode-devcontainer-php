@@ -16,3 +16,23 @@ services:
       - ./docker/workspace/config/php.ini:/etc/php/7.4/cli/conf.d/99-php.ini
     working_dir: /var/www
     command: sleep infinity
+
+  nginx:
+    build: ./docker/nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/config:/etc/nginx/conf.d/
+      - ../.docker/data/nginx/log:/var/log/nginx
+      - ../:/var/www
+    depends_on:
+      - php
+
+  php:
+    build: ./docker/php
+    volumes:
+      - ./docker/php/config/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/php/config/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ../:/var/www
+    working_dir: /var/www
