@@ -15,6 +15,7 @@ services:
       - ../:/var/www
       - ./docker/workspace/config/php.ini:/etc/php/7.4/cli/conf.d/99-php.ini
     working_dir: /var/www
+    network_mode: service:nginx
     command: sleep infinity
 
   nginx:
