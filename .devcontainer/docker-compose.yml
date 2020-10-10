@@ -15,6 +15,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "3000:3000"
     volumes:
       - ../:/var/www
       - ./docker/workspace/config/php.ini:/etc/php/7.4/cli/conf.d/99-php.ini
@@ -41,3 +42,11 @@ services:
       - ../:/var/www
     working_dir: /var/www
     network_mode: service:workspace
+
+  node:
+    build: ./docker/node
+    env_file: ../.env
+    tty: true
+    volumes:
+      - ../:/var/www
+    working_dir: /var/www
