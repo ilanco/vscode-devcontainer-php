@@ -59,6 +59,7 @@ services:
     env_file: ../.env
     volumes:
       - mariadb:/var/lib/mysql
+      - ../.docker/data/mysql/log:/var/log/mysql
       - ./docker/mariadb/config/my.cnf:/etc/mysql/conf.d/my.cnf
 
   postgres:
