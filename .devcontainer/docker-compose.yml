@@ -11,6 +11,9 @@ services:
         USERNAME: "vscode"
         USER_UID: 1000
         USER_GID: 1000
+    ports:
+      - "80:80"
+      - "443:443"
     volumes:
       - ../:/var/www
       - ./docker/workspace/config/php.ini:/etc/php/7.4/cli/conf.d/99-php.ini
@@ -19,9 +22,6 @@ services:
 
   nginx:
     build: ./docker/nginx
-    ports:
-      - "80:80"
-      - "443:443"
     volumes:
       - ./docker/nginx/config:/etc/nginx/conf.d/
       - ../.docker/data/nginx/log:/var/log/nginx
