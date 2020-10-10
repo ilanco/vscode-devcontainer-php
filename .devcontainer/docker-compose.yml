@@ -19,6 +19,7 @@ services:
       - "3306:3306"
       - "5432:5432"
       - "6379:6379"
+      - "8080:8080"
     volumes:
       - ../:/var/www
       - ./docker/workspace/config/php.ini:/etc/php/7.4/cli/conf.d/99-php.ini
@@ -73,6 +74,11 @@ services:
     env_file: ../.env
     volumes:
       - redis:/data
+
+  adminer:
+    image: adminer
+    restart: always
+    network_mode: service:workspace
 
 volumes:
   mariadb:
