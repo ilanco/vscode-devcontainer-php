@@ -16,6 +16,7 @@ services:
       - "80:80"
       - "443:443"
       - "3000:3000"
+      - "3306:3306"
     volumes:
       - ../:/var/www
       - ./docker/workspace/config/php.ini:/etc/php/7.4/cli/conf.d/99-php.ini
@@ -50,3 +51,23 @@ services:
     volumes:
       - ../:/var/www
     working_dir: /var/www
+
+  mariadb:
+    image: mariadb:10.4
+    env_file: ../.env
+    volumes:
+      - mariadb:/var/lib/mysql
+      - ./docker/mariadb/config/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+
+volumes:
+  mariadb:
+    driver: local
+  postgres:
+    driver: local
+  redis:
+    driver: local
