@@ -11,9 +11,10 @@ services:
         USERNAME: "vscode"
         USER_UID: 1000
         USER_GID: 1000
+    env_file: ../.env
     ports:
-      - "80:8080"
-      - "443:8443"
+      - "80:80"
+      - "443:443"
     volumes:
       - ../:/var/www
       - ./docker/workspace/config/php.ini:/etc/php/7.4/cli/conf.d/99-php.ini
@@ -22,6 +23,7 @@ services:
 
   nginx:
     build: ./docker/nginx
+    env_file: ../.env
     volumes:
       - ./docker/nginx/config:/etc/nginx/conf.d/
       - ../.docker/data/nginx/log:/var/log/nginx
@@ -32,6 +34,7 @@ services:
 
   php:
     build: ./docker/php
+    env_file: ../.env
     volumes:
       - ./docker/php/config/php.ini:/usr/local/etc/php/php.ini
       - ./docker/php/config/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
