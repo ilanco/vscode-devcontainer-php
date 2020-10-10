@@ -53,7 +53,7 @@ services:
     working_dir: /var/www
 
   mariadb:
-    image: mariadb:10.4
+    image: mariadb:10.5
     env_file: ../.env
     volumes:
       - mariadb:/var/lib/mysql
