@@ -58,7 +58,6 @@ services:
     volumes:
       - mariadb:/var/lib/mysql
       - ./docker/mariadb/config/my.cnf:/etc/mysql/conf.d/my.cnf
-    environment:
 
 volumes:
   mariadb:
