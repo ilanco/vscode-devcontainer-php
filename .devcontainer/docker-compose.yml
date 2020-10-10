@@ -22,6 +22,9 @@ services:
 
   nginx:
     build: ./docker/nginx
+    expose:
+      - "80"
+      - "443"
     volumes:
       - ./docker/nginx/config:/etc/nginx/conf.d/
       - ../.docker/data/nginx/log:/var/log/nginx
@@ -32,6 +35,9 @@ services:
 
   php:
     build: ./docker/php
+    expose:
+      - "9000"
+      - "9001"
     volumes:
       - ./docker/php/config/php.ini:/usr/local/etc/php/php.ini
       - ./docker/php/config/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
