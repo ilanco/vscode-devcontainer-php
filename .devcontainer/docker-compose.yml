@@ -17,6 +17,8 @@ services:
       - "443:443"
       - "3000:3000"
       - "3306:3306"
+      - "5432:5432"
+      - "6379:6379"
     volumes:
       - ../:/var/www
       - ./docker/workspace/config/php.ini:/etc/php/7.4/cli/conf.d/99-php.ini
@@ -58,6 +60,16 @@ services:
     volumes:
       - mariadb:/var/lib/mysql
       - ./docker/mariadb/config/my.cnf:/etc/mysql/conf.d/my.cnf
+
+  postgres:
+    build: ./docker/postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6.0
+    volumes:
+      - redis:/data
 
 volumes:
   mariadb:
