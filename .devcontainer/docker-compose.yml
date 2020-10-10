@@ -59,10 +59,6 @@ services:
       - mariadb:/var/lib/mysql
       - ./docker/mariadb/config/my.cnf:/etc/mysql/conf.d/my.cnf
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_DATABASE: ${DB_DATABASE}
 
 volumes:
   mariadb:
