@@ -27,7 +27,7 @@ services:
       - ../:/var/www
       - ./docker/workspace/config/php.ini:/etc/php/7.4/cli/conf.d/99-php.ini
     working_dir: /var/www
-    # entrypoint: /usr/local/share/docker-init.sh
+    entrypoint: /usr/local/share/docker-init.sh
     command: sleep infinity
 
   nginx:
