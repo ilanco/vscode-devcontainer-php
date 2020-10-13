@@ -45,8 +45,6 @@ services:
     build: ./docker/php
     env_file: ../.env
     volumes:
-      - ./docker/php/config/php.ini:/usr/local/etc/php/php.ini
-      - ./docker/php/config/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ../:/var/www
     working_dir: /var/www
     network_mode: service:workspace
