@@ -6,6 +6,10 @@
     "service": "workspace",
     "workspaceFolder": "/var/www",
 
+    "remoteEnv": {
+        "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+    },
+
     "remoteUser": "vscode",
 
     "settings": {
@@ -15,6 +19,7 @@
     "forwardPorts": [80, 443, 8080],
 
     "extensions": [
+        "ms-azuretools.vscode-docker",
         "felixfbecker.php-debug",
         "felixfbecker.php-intellisense",
         "mrmlnc.vscode-apache",
@@ -22,5 +27,5 @@
         "mtxr.sqltools-driver-mysql"
     ],
 
-    "postCreateCommand": "echo \"postCreateCommand\""
+    "postCreateCommand": "docker --version && echo \"postCreateCommand\""
 }
