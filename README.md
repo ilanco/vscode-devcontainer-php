@@ -10,6 +10,7 @@ A complete Visual Studio Code and Codespaces Development Container for PHP
 
 # Included PHP modules
 
+- bcmath
 - ctype
 - curl
 - date
@@ -17,15 +18,19 @@ A complete Visual Studio Code and Codespaces Development Container for PHP
 - fileinfo
 - filter
 - ftp
+- gd
 - hash
 - iconv
 - json
 - libxml
 - mbstring
+- mysqli
 - mysqlnd
 - openssl
 - pcre
 - PDO
+- pdo_mysql
+- pdo_pgsql
 - pdo_sqlite
 - Phar
 - posix
@@ -36,6 +41,8 @@ A complete Visual Studio Code and Codespaces Development Container for PHP
 - sodium
 - SPL
 - sqlite3
+- standard
+- tokenizer
 - xdebug
 - xml
 - xmlreader
