@@ -19,13 +19,15 @@
     "forwardPorts": [80, 443, 8080],
 
     "extensions": [
-        "ms-azuretools.vscode-docker",
-        "felixfbecker.php-debug",
-        "felixfbecker.php-intellisense",
-        "mrmlnc.vscode-apache",
-        "mtxr.sqltools",
-        "mtxr.sqltools-driver-mysql"
-    ],
+		"ms-azuretools.vscode-docker",
+		"felixfbecker.php-debug",
+		"felixfbecker.php-intellisense",
+		"mrmlnc.vscode-apache",
+		"mtxr.sqltools",
+		"mtxr.sqltools-driver-mysql",
+		"mtxr.sqltools-driver-pg",
+		"mtxr.sqltools-driver-sqlite"
+	],
 
     "postCreateCommand": "docker --version && echo \"postCreateCommand\""
 }
