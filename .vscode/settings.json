@@ -1,0 +1,28 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "mariadb",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "MariaDB",
+            "database": "docker",
+            "username": "docker",
+            "password": "docker"
+        },
+        {
+            "previewLimit": 50,
+            "server": "postgres",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "PostgreSQL",
+            "database": "docker",
+            "username": "docker",
+            "password": "docker"
+        }
+    ]
+
+}
