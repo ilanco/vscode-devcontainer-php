@@ -1,7 +1,7 @@
 {
     "name": "PHP",
     "dockerComposeFile": [
-        "docker-compose.yml"
+        ".devcontainer/docker-compose.yml"
     ],
     "service": "workspace",
     "workspaceFolder": "/var/www",
