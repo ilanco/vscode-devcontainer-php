@@ -7,7 +7,7 @@
     "workspaceFolder": "/var/www",
 
     "remoteEnv": {
-        "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+        "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolderBasename}"
     },
 
     "remoteUser": "vscode",
