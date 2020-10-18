@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile
       args:
         VARIANT: "7"
-        USERNAME: "vscode"
+        USERNAME: vscode
         USER_UID: 1000
         USER_GID: 1000
     env_file: ../.env
