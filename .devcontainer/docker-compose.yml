@@ -49,6 +49,15 @@ services:
     working_dir: /var/www
     network_mode: service:workspace
 
+  composer:
+    restart: 'no'
+    image: clevyr/prestissimo
+    command: install
+    env_file: ../.env
+    volumes:
+      - ../:/var/www
+    working_dir: /var/www
+
   node:
     build: ./docker/node
     env_file: ../.env
