@@ -25,7 +25,7 @@ services:
       # Forwards the local Docker socket to the container.
       - /var/run/docker.sock:/var/run/docker-host.sock 
       - ../:/var/www
-      - ./docker/workspace/config/php.ini:/etc/php/7.4/cli/conf.d/99-php.ini
+      - ./docker/workspace/config/aliases.sh:/home/${REMOTE_USER}/aliases.sh
     working_dir: /var/www
     entrypoint: /usr/local/share/docker-init.sh
     command: sleep infinity
