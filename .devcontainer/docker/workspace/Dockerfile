@@ -23,15 +23,17 @@ RUN /bin/bash /tmp/library-scripts/common-debian.sh "${INSTALL_ZSH}" "${USERNAME
 # Use Docker script from script library to set things up
 RUN /bin/bash /tmp/library-scripts/docker-debian.sh "${ENABLE_NONROOT_DOCKER}" "${SOURCE_SOCKET}" "${TARGET_SOCKET}" "${USERNAME}"
 
+# Clean up
+RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts/
+
+COPY config/aliases.sh /home/${USERNAME}/aliases.sh
+
 RUN sed -i 's/\r//' /home/${USERNAME}/aliases.sh && \
     chown ${USER_UID}:${USER_GID} /home/${USERNAME}/aliases.sh && \
     echo "" >> /home/${USERNAME}/.bashrc && \
     echo "# Load Custom Aliases" >> /home/${USERNAME}/.bashrc && \
     echo "source ~/aliases.sh" >> /home/${USERNAME}/.bashrc && \
 	echo "" >> /home/${USERNAME}/.bashrc
-
-# Clean up
-RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts/
 
 # Setting the ENTRYPOINT to docker-init.sh will configure non-root access to 
 # the Docker socket if "overrideCommand": false is set in devcontainer.json. 
