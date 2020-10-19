@@ -7,10 +7,10 @@ services:
       context: ./docker/workspace
       dockerfile: Dockerfile
       args:
-        VARIANT: "7"
-        USERNAME: vscode
-        USER_UID: 1000
-        USER_GID: 1000
+        - PHP_VERSION=${PHP_VERSION}
+        - USERNAME=${REMOTE_USER}
+        - USER_UID=${USER_UID}
+        - USER_GID=${USER_GID}
     env_file: ../.env
     ports:
       - "80:80"
@@ -25,7 +25,6 @@ services:
       # Forwards the local Docker socket to the container.
       - /var/run/docker.sock:/var/run/docker-host.sock 
       - ../:/var/www
-      - ./docker/workspace/config/aliases.sh:/home/${REMOTE_USER}/aliases.sh
     working_dir: /var/www
     entrypoint: /usr/local/share/docker-init.sh
     command: sleep infinity
@@ -42,7 +41,15 @@ services:
     network_mode: service:workspace
 
   php:
-    build: ./docker/php
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+      args:
+        - PHP_VERSION=${PHP_VERSION}
+        - USERNAME=${REMOTE_USER}
+        - USER_UID=${USER_UID}
+        - USER_GID=${USER_GID}
+        - XDEBUG_REMOTE_PORT=${XDEBUG_REMOTE_PORT}
     env_file: ../.env
     volumes:
       - ../:/var/www
@@ -73,6 +80,10 @@ services:
       - mariadb:/var/lib/mysql
       - ../.docker/data/mysql/log:/var/log/mysql
       - ./docker/mariadb/config/my.cnf:/etc/mysql/conf.d/my.cnf
+    networks:
+      default:
+        aliases:
+          - mysql
 
   postgres:
     build: ./docker/postgres
