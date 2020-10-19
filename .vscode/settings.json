@@ -23,6 +23,9 @@
             "username": "docker",
             "password": "docker"
         }
-    ]
-
+    ],
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "workbench.enableExperiments": false,
+    "workbench.settings.enableNaturalLanguageSearch": false
 }
