@@ -1,5 +1,5 @@
-ARG VARIANT=7
-FROM mcr.microsoft.com/vscode/devcontainers/php:dev-${VARIANT}
+ARG PHP_VERSION=7
+FROM mcr.microsoft.com/vscode/devcontainers/php:dev-${PHP_VERSION}
 
 # [Option] Install zsh
 ARG INSTALL_ZSH="false"
