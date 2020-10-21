@@ -53,5 +53,5 @@ RUN pecl install xdebug \
     && echo "xdebug.profiler_enable_trigger=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 RUN [ -n "${CODESPACES}" -a "${CODESPACES}" = 1 ] \
-    && sed -i "s/xdebug.remote_autostart=${XDEBUG_REMOTE_AUTOSTART}/xdebug.remote_autostart=0/" ${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini; \
-fi
+    && sed -i "s/xdebug.remote_autostart=${XDEBUG_REMOTE_AUTOSTART}/xdebug.remote_autostart=0/" ${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini \
+    || echo "Not running in a codespace"
