@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
 
 # install PDO
 RUN apt-get install -y libpq-dev \
-    && docker-php-ext-install pdo pdo_mysql pdo_pgsql
+    && docker-php-ext-install -j$(nproc) pdo pdo_mysql pdo_pgsql
 
 # install bcmath
 RUN docker-php-ext-install -j$(nproc) bcmath
@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd
 
 # install mysqli
-RUN docker-php-ext-install mysqli
+RUN docker-php-ext-install -j$(nproc) mysqli
 
 ARG XDEBUG_REMOTE_ENABLE=1
 ARG XDEBUG_REMOTE_AUTOSTART=1
