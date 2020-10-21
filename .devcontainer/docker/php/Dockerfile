@@ -53,5 +53,5 @@ RUN pecl install xdebug \
     && echo "xdebug.profiler_enable_trigger=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 RUN if [ ${CODESPACES} = true ]; then \
-    sed -i "s/xdebug.remote_autostart=${XDEBUG_REMOTE_AUTOSTART}/xdebug.remote_autostart=0/"; \
-;fi
+    sed -i "s/xdebug.remote_autostart=${XDEBUG_REMOTE_AUTOSTART}/xdebug.remote_autostart=0/" ${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini; \
+fi
