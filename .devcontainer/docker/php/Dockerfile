@@ -35,7 +35,7 @@ ARG XDEBUG_REMOTE_HOST=localhost
 ARG XDEBUG_REMOTE_PORT=9001
 ARG XDEBUG_REMOTE_LOG
 
-# Install xdebug
+# Install xdebug 
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug \
     && echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
@@ -52,6 +52,6 @@ RUN pecl install xdebug \
     && echo "xdebug.max_nesting_level=9999" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.profiler_enable_trigger=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-RUN if [ ${CODESPACES} = true ]; then \
-    sed -i "s/xdebug.remote_autostart=${XDEBUG_REMOTE_AUTOSTART}/xdebug.remote_autostart=0/" ${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini; \
+RUN [ -n "${CODESPACES}" -a "${CODESPACES}" = 1 ] \
+    && sed -i "s/xdebug.remote_autostart=${XDEBUG_REMOTE_AUTOSTART}/xdebug.remote_autostart=0/" ${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini; \
 fi
