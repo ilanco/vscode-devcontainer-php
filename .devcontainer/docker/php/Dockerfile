@@ -51,3 +51,7 @@ RUN pecl install xdebug \
     && echo "xdebug.profiler_output_dir=/tmp/snapshots" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.max_nesting_level=9999" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.profiler_enable_trigger=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+RUN if [ ${CODESPACES} = true ]; then \
+    sed -i "s/xdebug.remote_autostart=${XDEBUG_REMOTE_AUTOSTART}/xdebug.remote_autostart=0/"; \
+;fi
