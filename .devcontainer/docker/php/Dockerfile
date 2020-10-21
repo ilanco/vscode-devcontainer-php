@@ -52,6 +52,8 @@ RUN pecl install xdebug \
     && echo "xdebug.max_nesting_level=9999" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.profiler_enable_trigger=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
+# TODO: find a way to detect a codespace deployment
+# The CODESPACES environment variable is not set in additional containers
 RUN [ -n "${CODESPACES}" -a "${CODESPACES}" = 1 ] \
     && sed -i "s/xdebug.remote_autostart=${XDEBUG_REMOTE_AUTOSTART}/xdebug.remote_autostart=0/" ${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini \
     || echo "Not running in a codespace"
