@@ -68,7 +68,7 @@ If you discover any security-related issues, please email ilanco@gmail.com inste
 ## Credits
 
 - [Ilan Cohen](https://github.com/ilanco)
-- [All Contributors](../contributors)
+- [All Contributors](../../contributors)
 
 ## License
 
