@@ -58,7 +58,7 @@ services:
 
   composer:
     restart: 'no'
-    image: clevyr/prestissimo
+    image: composer/composer
     command: install
     env_file: ../.env
     volumes:
