@@ -37,8 +37,9 @@ ARG XDEBUG_REMOTE_LOG
 
 # Install xdebug 
 RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug \
-    && echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && docker-php-ext-enable xdebug
+
+RUN echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "display_startup_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_enable=${XDEBUG_REMOTE_ENABLE}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
@@ -55,5 +56,5 @@ RUN pecl install xdebug \
 # TODO: find a way to detect a codespace deployment
 # The CODESPACES environment variable is not set in additional containers
 RUN [ -n "${CODESPACES}" -a "${CODESPACES}" = 1 ] \
-    && sed -i "s/xdebug.remote_autostart=${XDEBUG_REMOTE_AUTOSTART}/xdebug.remote_autostart=0/" ${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini \
+    && sed -i "s/xdebug.remote_connect_back=${XDEBUG_REMOTE_CONNECT_BACK}/xdebug.remote_connect_back=0/" ${PHP_INI_DIR}/conf.d/docker-php-ext-xdebug.ini \
     || echo "Not running in a codespace"
