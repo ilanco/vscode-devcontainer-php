@@ -1,3 +1,3 @@
-FROM node:14
+FROM node:15
 
 ENV NODE_ENV="development"
