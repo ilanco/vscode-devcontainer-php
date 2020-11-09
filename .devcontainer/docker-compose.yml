@@ -49,6 +49,7 @@ services:
         - USERNAME=${REMOTE_USER}
         - USER_UID=${USER_UID}
         - USER_GID=${USER_GID}
+        - XDEBUG_REMOTE_CONNECT_BACK=${XDEBUG_REMOTE_CONNECT_BACK}
         - XDEBUG_REMOTE_PORT=${XDEBUG_REMOTE_PORT}
     env_file: ../.env
     volumes:
