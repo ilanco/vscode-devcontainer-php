@@ -20,9 +20,9 @@
 
     "extensions": [
 		"ms-azuretools.vscode-docker",
-		"felixfbecker.php-debug",
-		"felixfbecker.php-intellisense",
-		"mrmlnc.vscode-apache",
+        "mrmlnc.vscode-apache",
+        "bmewburn.vscode-intelephense-client",
+        "robberphex.php-debug",
 		"mtxr.sqltools",
 		"mtxr.sqltools-driver-mysql",
 		"mtxr.sqltools-driver-pg",
