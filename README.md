@@ -5,7 +5,7 @@ A complete Visual Studio Code and Codespaces Development Container for PHP.
 ## Features
 
 - Containerized services: php-fpm, nginx, composer, node, mariadb, postgresql, redis, adminer
-- Latest stable PHP version (7.4)
+- Latest release candidate PHP (8.0.0RC5)
 - Remote PHP debugging
 
 ## Installation and usage

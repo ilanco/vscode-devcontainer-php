@@ -1,0 +1,53 @@
+version: '3.7'
+
+services:
+
+  workspace:
+    build:
+      context: ./docker/workspace
+      dockerfile: Dockerfile
+      args:
+        - PHP_VERSION=${PHP_VERSION}
+        - USERNAME=${REMOTE_USER}
+        - USER_UID=${USER_UID}
+        - USER_GID=${USER_GID}
+    env_file: ../.env
+    ports:
+      - "80:80"
+      - "443:443"
+    init: true
+    volumes:
+      # Forwards the local Docker socket to the container.
+      - /var/run/docker.sock:/var/run/docker-host.sock 
+      - ../:/var/www
+    working_dir: /var/www
+    entrypoint: /usr/local/share/docker-init.sh
+    command: sleep infinity
+
+  nginx:
+    build: ./docker/nginx
+    env_file: ../.env
+    volumes:
+      - ./docker/nginx/config:/etc/nginx/conf.d/
+      - ../.docker/data/nginx/log:/var/log/nginx
+      - ../:/var/www
+    depends_on:
+      - php
+    network_mode: service:workspace
+
+  php:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+      args:
+        - PHP_VERSION=${PHP_VERSION}
+        - USERNAME=${REMOTE_USER}
+        - USER_UID=${USER_UID}
+        - USER_GID=${USER_GID}
+        - XDEBUG_REMOTE_CONNECT_BACK=${XDEBUG_REMOTE_CONNECT_BACK}
+        - XDEBUG_REMOTE_PORT=${XDEBUG_REMOTE_PORT}
+    env_file: ../.env
+    volumes:
+      - ../:/var/www
+    working_dir: /var/www
+    network_mode: service:workspace
