@@ -1,4 +1,4 @@
-ARG PHP_VERSION=7.4
+ARG PHP_VERSION=8.0.0
 FROM php:${PHP_VERSION}-fpm
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -28,6 +28,8 @@ RUN apt-get update && apt-get install -y \
 # install mysqli
 RUN docker-php-ext-install -j$(nproc) mysqli
 
+ARG XDEBUG_VERSION="3.0.0RC1"
+ARG XDEBUG_OUTPUT_DIR="/tmp/debug"
 ARG XDEBUG_REMOTE_ENABLE=1
 ARG XDEBUG_REMOTE_AUTOSTART=1
 ARG XDEBUG_REMOTE_CONNECT_BACK=1
@@ -35,13 +37,16 @@ ARG XDEBUG_REMOTE_HOST=localhost
 ARG XDEBUG_REMOTE_PORT=9001
 ARG XDEBUG_REMOTE_LOG
 
-# Install xdebug 
-RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug
+# install xdebug 3.0
+RUN git clone -b ${XDEBUG_VERSION} --depth 1 https://github.com/xdebug/xdebug.git /usr/src/php/ext/xdebug \
+    && docker-php-ext-configure xdebug --enable-xdebug-dev \
+    && docker-php-ext-install xdebug \
+    && mkdir /tmp/debug
 
 RUN echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "display_startup_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.output_dir=${XDEBUG_OUTPUT_DIR}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_enable=${XDEBUG_REMOTE_ENABLE}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_autostart=${XDEBUG_REMOTE_AUTOSTART}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_connect_back=${XDEBUG_REMOTE_CONNECT_BACK}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
