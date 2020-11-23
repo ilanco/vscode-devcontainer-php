@@ -7,7 +7,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN ln -s "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
 RUN apt-get update && apt-get install -y \
-    unzip wget
+    unzip wget git
 
 # install PDO
 RUN apt-get install -y libpq-dev \
