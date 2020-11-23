@@ -1,4 +1,4 @@
-# vscode-devcontainer-php7
+# vscode-devcontainer-php
 
 A complete Visual Studio Code and Codespaces Development Container for PHP.
 
