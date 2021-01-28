@@ -26,7 +26,8 @@
 		"mtxr.sqltools",
 		"mtxr.sqltools-driver-mysql",
 		"mtxr.sqltools-driver-pg",
-		"mtxr.sqltools-driver-sqlite"
+		"mtxr.sqltools-driver-sqlite",
+        "mongodb.mongodb-vscode"
 	],
 
     "postCreateCommand": "docker --version && echo \"postCreateCommand\""
