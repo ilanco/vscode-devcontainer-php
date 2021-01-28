@@ -101,11 +101,6 @@ services:
     volumes:
       - mongo:/data/db
 
-  mongo-express:
-    image: mongo-express
-    restart: always
-    env_file: ../.env
-
   redis:
     image: redis:6.0
     env_file: ../.env
@@ -115,6 +110,12 @@ services:
   adminer:
     image: adminer
     restart: always
+    network_mode: service:workspace
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    env_file: ../.env
     network_mode: service:workspace
 
 volumes:
