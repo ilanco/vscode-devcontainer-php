@@ -20,6 +20,8 @@ services:
       - "5432:5432"
       - "6379:6379"
       - "8080:8080"
+      - "8081:8081"
+      - "27017:27017"
     init: true
     volumes:
       # Forwards the local Docker socket to the container.
@@ -92,6 +94,18 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
 
+  mongo:
+    image: mongo
+    restart: always
+    env_file: ../.env
+    volumes:
+      - mongo:/data/db
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    env_file: ../.env
+
   redis:
     image: redis:6.0
     env_file: ../.env
@@ -107,6 +121,8 @@ volumes:
   mariadb:
     driver: local
   postgres:
+    driver: local
+  mongo:
     driver: local
   redis:
     driver: local
